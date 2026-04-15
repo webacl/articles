@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 820" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="820" fill="#fafaf8"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" font-size="26" fill="#2c2c2c" font-weight="normal">Web Access Control (WAC)</text>
+  <text x="480" y="60" text-anchor="middle" font-size="13" fill="#999" font-style="italic">Decentralized cross-domain access control for Linked Data — Tim Berners-Lee, 2009</text>
+
+  <!-- ACCESS SUBJECTS -->
+  <rect x="30" y="80" width="900" height="85" rx="8" fill="none" stroke="#e8d4ef" stroke-width="1.5"/>
+  <text x="45" y="100" font-size="11" fill="#999" font-weight="bold" letter-spacing="0.5">ACCESS SUBJECTS (who)</text>
+  <rect x="50" y="110" width="190" height="42" rx="6" fill="#fff" stroke="#c8a2d3" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="145" y="129" text-anchor="middle" font-size="13" fill="#7b2ea0" font-family="'Courier New', monospace">acl:agent</text>
+  <text x="145" y="144" text-anchor="middle" font-size="10" fill="#888">Specific WebID URI</text>
+  <rect x="260" y="110" width="190" height="42" rx="6" fill="#fff" stroke="#c8a2d3" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="355" y="129" text-anchor="middle" font-size="13" fill="#7b2ea0" font-family="'Courier New', monospace">acl:agentGroup</text>
+  <text x="355" y="144" text-anchor="middle" font-size="10" fill="#888">vcard:Group members</text>
+  <rect x="470" y="110" width="190" height="42" rx="6" fill="#fff" stroke="#c8a2d3" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="565" y="129" text-anchor="middle" font-size="13" fill="#7b2ea0" font-family="'Courier New', monospace">foaf:Agent</text>
+  <text x="565" y="144" text-anchor="middle" font-size="10" fill="#888">Everyone (public)</text>
+  <rect x="680" y="110" width="230" height="42" rx="6" fill="#fff" stroke="#c8a2d3" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="795" y="129" text-anchor="middle" font-size="13" fill="#7b2ea0" font-family="'Courier New', monospace">AuthenticatedAgent</text>
+  <text x="795" y="144" text-anchor="middle" font-size="10" fill="#888">Any WebID holder</text>
+
+  <!-- Arrow label -->
+  <rect x="430" y="172" width="100" height="22" rx="4" fill="#f0efeb"/>
+  <text x="480" y="187" text-anchor="middle" font-size="10" fill="#888">who + what</text>
+
+  <!-- ACCESS MODES -->
+  <rect x="30" y="200" width="900" height="85" rx="8" fill="none" stroke="#fde2c8" stroke-width="1.5"/>
+  <text x="45" y="220" font-size="11" fill="#999" font-weight="bold" letter-spacing="0.5">ACCESS MODES (what operations)</text>
+  <rect x="50" y="230" width="190" height="42" rx="6" fill="#fff3e0" stroke="#e8a050" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="145" y="249" text-anchor="middle" font-size="13" fill="#c06000" font-family="'Courier New', monospace">acl:Read</text>
+  <text x="145" y="264" text-anchor="middle" font-size="10" fill="#888">GET, HEAD</text>
+  <rect x="260" y="230" width="190" height="42" rx="6" fill="#fff3e0" stroke="#e8a050" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="355" y="249" text-anchor="middle" font-size="13" fill="#c06000" font-family="'Courier New', monospace">acl:Write</text>
+  <text x="355" y="264" text-anchor="middle" font-size="10" fill="#888">PUT, POST, PATCH, DELETE</text>
+  <rect x="470" y="230" width="190" height="42" rx="6" fill="#fff3e0" stroke="#e8a050" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="565" y="249" text-anchor="middle" font-size="13" fill="#c06000" font-family="'Courier New', monospace">acl:Append</text>
+  <text x="565" y="264" text-anchor="middle" font-size="10" fill="#888">POST, INSERT-only PATCH</text>
+  <rect x="680" y="230" width="230" height="42" rx="6" fill="#fff3e0" stroke="#e8a050" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="795" y="249" text-anchor="middle" font-size="13" fill="#c06000" font-family="'Courier New', monospace">acl:Control</text>
+  <text x="795" y="264" text-anchor="middle" font-size="10" fill="#888">Modify the ACL itself</text>
+
+  <!-- Arrow label -->
+  <rect x="430" y="292" width="100" height="22" rx="4" fill="#f0efeb"/>
+  <text x="480" y="307" text-anchor="middle" font-size="10" fill="#888">authorize</text>
+
+  <!-- AUTHORIZATION FLOW -->
+  <rect x="30" y="320" width="900" height="120" rx="8" fill="none" stroke="#c8dce8" stroke-width="1.5"/>
+  <text x="45" y="340" font-size="11" fill="#999" font-weight="bold" letter-spacing="0.5">AUTHORIZATION FLOW</text>
+
+  <rect x="50" y="355" width="155" height="50" rx="6" fill="#fff" stroke="#5b9bd5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="127" y="375" text-anchor="middle" font-size="12" fill="#2c5f8a" font-weight="bold">HTTP Request</text>
+  <text x="127" y="393" text-anchor="middle" font-size="10" fill="#5b9bd5" font-family="'Courier New', monospace">GET /resource</text>
+
+  <line x1="205" y1="380" x2="230" y2="380" stroke="#5b9bd5" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <defs><marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#5b9bd5"/></marker></defs>
+
+  <rect x="232" y="355" width="155" height="50" rx="6" fill="#fff" stroke="#5b9bd5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="309" y="375" text-anchor="middle" font-size="12" fill="#2c5f8a" font-weight="bold">Authenticate</text>
+  <text x="309" y="393" text-anchor="middle" font-size="10" fill="#5b9bd5" font-family="'Courier New', monospace">Solid-OIDC</text>
+
+  <line x1="387" y1="380" x2="412" y2="380" stroke="#5b9bd5" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <rect x="414" y="355" width="155" height="50" rx="6" fill="#fff" stroke="#5b9bd5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="491" y="375" text-anchor="middle" font-size="12" fill="#2c5f8a" font-weight="bold">Locate ACL</text>
+  <text x="491" y="393" text-anchor="middle" font-size="10" fill="#5b9bd5" font-family="'Courier New', monospace">Link: rel=acl</text>
+
+  <line x1="569" y1="380" x2="594" y2="380" stroke="#5b9bd5" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <rect x="596" y="355" width="155" height="50" rx="6" fill="#fff" stroke="#5b9bd5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="673" y="375" text-anchor="middle" font-size="12" fill="#2c5f8a" font-weight="bold">Evaluate</text>
+  <text x="673" y="393" text-anchor="middle" font-size="10" fill="#888">Match agent +</text>
+  <text x="673" y="404" text-anchor="middle" font-size="10" fill="#888">mode + resource</text>
+
+  <!-- 200 OK -->
+  <line x1="751" y1="370" x2="790" y2="370" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <defs><marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#27ae60"/></marker></defs>
+  <rect x="792" y="355" width="120" height="30" rx="15" fill="#eafaf1" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="852" y="375" text-anchor="middle" font-size="13" fill="#27ae60" font-weight="bold">200 OK</text>
+
+  <!-- 403 Deny -->
+  <line x1="751" y1="395" x2="790" y2="410" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <defs><marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#e74c3c"/></marker></defs>
+  <rect x="792" y="395" width="120" height="30" rx="15" fill="#fdeaea" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="852" y="415" text-anchor="middle" font-size="13" fill="#e74c3c" font-weight="bold">403 Deny</text>
+
+  <!-- Inheritance note -->
+  <rect x="50" y="448" width="700" height="35" rx="4" fill="#fef9e7" stroke="#f0c040" stroke-width="1"/>
+  <text x="65" y="463" font-size="11" fill="#c08000" font-weight="bold" font-style="italic">Inheritance:</text>
+  <text x="145" y="463" font-size="10.5" fill="#888">No .acl on resource? Walk up container hierarchy to nearest acl:default. Root .acl is the fallback.</text>
+  <text x="65" y="476" font-size="10" fill="#aaa" font-family="'Courier New', monospace">acl:accessTo = this resource  |  acl:default = child resources</text>
+
+  <!-- ACL RESOURCE + CONTAINER HIERARCHY -->
+  <!-- ACL Resource -->
+  <rect x="30" y="498" width="440" height="145" rx="8" fill="none" stroke="#e0e0e0" stroke-width="1.2"/>
+  <text x="45" y="518" font-size="11" fill="#999" font-weight="bold" letter-spacing="0.5">ACL RESOURCE (Turtle RDF)</text>
+  <rect x="45" y="528" width="410" height="105" rx="4" fill="#f0efeb"/>
+  <text x="60" y="546" font-size="11" fill="#888" font-family="'Courier New', monospace">@prefix acl: &lt;...acl#&gt; .</text>
+  <text x="60" y="565" font-size="11" fill="#2c2c2c" font-family="'Courier New', monospace">&lt;#owner&gt;</text>
+  <text x="75" y="581" font-size="11" fill="#2c2c2c" font-family="'Courier New', monospace">a acl:Authorization ;</text>
+  <text x="75" y="597" font-size="11" fill="#2c2c2c" font-family="'Courier New', monospace">acl:agent &lt;alice#me&gt; ;</text>
+  <text x="75" y="613" font-size="11" fill="#2c2c2c" font-family="'Courier New', monospace">acl:accessTo &lt;./file1&gt; ;</text>
+  <text x="75" y="629" font-size="11" fill="#2c2c2c" font-family="'Courier New', monospace">acl:mode acl:Read, acl:Write, acl:Control .</text>
+
+  <!-- Container Hierarchy -->
+  <rect x="490" y="498" width="440" height="145" rx="8" fill="none" stroke="#e0e0e0" stroke-width="1.2"/>
+  <text x="505" y="518" font-size="11" fill="#999" font-weight="bold" letter-spacing="0.5">CONTAINER HIERARCHY</text>
+  <rect x="505" y="528" width="410" height="105" rx="4" fill="#f0efeb"/>
+  <text x="520" y="548" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">alice.pod/</text>
+  <text x="540" y="565" font-size="11.5" fill="#5b9bd5" font-family="'Courier New', monospace">.acl</text>
+  <text x="680" y="565" font-size="10" fill="#aaa">&larr; root fallback</text>
+  <text x="540" y="582" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">profile/</text>
+  <text x="560" y="599" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">card</text>
+  <text x="680" y="599" font-size="10" fill="#aaa">(inherits from root)</text>
+  <text x="560" y="616" font-size="11.5" fill="#5b9bd5" font-family="'Courier New', monospace">card.acl</text>
+  <text x="680" y="616" font-size="10" fill="#aaa">&larr; overrides</text>
+  <text x="540" y="633" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">public/</text>
+
+  <!-- IMPLEMENTATIONS -->
+  <rect x="30" y="660" width="900" height="75" rx="8" fill="none" stroke="#e0e0e0" stroke-width="1.2"/>
+  <text x="45" y="680" font-size="11" fill="#999" font-weight="bold" letter-spacing="0.5">IMPLEMENTATIONS + STANDARDS</text>
+
+  <rect x="50" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="105" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">CSS</text>
+  <text x="105" y="720" text-anchor="middle" font-size="9" fill="#999">Reference</text>
+
+  <rect x="175" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="230" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">NSS</text>
+  <text x="230" y="720" text-anchor="middle" font-size="9" fill="#999">Original</text>
+
+  <rect x="300" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="355" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">JSS</text>
+  <text x="355" y="720" text-anchor="middle" font-size="9" fill="#999">JavaScript</text>
+
+  <rect x="425" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="480" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">solid-client</text>
+  <text x="480" y="720" text-anchor="middle" font-size="9" fill="#999">JS Library</text>
+
+  <rect x="550" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="605" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">wchmod</text>
+  <text x="605" y="720" text-anchor="middle" font-size="9" fill="#999">CLI tool</text>
+
+  <rect x="675" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="730" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">Mashlib</text>
+  <text x="730" y="720" text-anchor="middle" font-size="9" fill="#999">ACL editor</text>
+
+  <rect x="800" y="692" width="110" height="32" rx="6" fill="#fff" stroke="#d0d0d0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="855" y="707" text-anchor="middle" font-size="12" fill="#2c2c2c" font-weight="bold">ACP</text>
+  <text x="855" y="720" text-anchor="middle" font-size="9" fill="#999">Alternative</text>
+
+  <!-- Legend -->
+  <rect x="30" y="750" width="140" height="55" rx="4" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="45" y="768" font-size="10" fill="#999" font-weight="bold">LEGEND</text>
+  <line x1="45" y1="780" x2="65" y2="780" stroke="#5b9bd5" stroke-width="2"/>
+  <text x="70" y="784" font-size="10" fill="#888">Data Flow</text>
+  <line x1="45" y1="795" x2="65" y2="795" stroke="#27ae60" stroke-width="2"/>
+  <text x="70" y="799" font-size="10" fill="#27ae60">Allow</text>
+  <line x1="100" y1="795" x2="120" y2="795" stroke="#e74c3c" stroke-width="2"/>
+  <text x="125" y="799" font-size="10" fill="#e74c3c">Deny</text>
+
+  <!-- Tagline -->
+  <rect x="250" y="755" width="480" height="45" rx="8" fill="#fdeaea" stroke="#e8a0a0" stroke-width="1"/>
+  <text x="490" y="776" text-anchor="middle" font-size="14" fill="#2c2c2c" font-weight="bold">Each resource controls its own access, in RDF</text>
+  <text x="490" y="793" text-anchor="middle" font-size="11" fill="#999">Decentralized · WebID-based · Inheritable · W3C Solid Community Group</text>
+
+</svg>
