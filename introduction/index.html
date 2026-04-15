@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to WebACL</title>
+    <meta name="description" content="What Web Access Control is, how it works, and why it matters for the decentralized web.">
+    <meta property="og:title" content="Introduction to WebACL">
+    <meta property="og:description" content="What Web Access Control is, how it works, and why it matters for the decentralized web.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://webacl.org/articles/introduction/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Introduction to WebACL">
+    <meta name="twitter:description" content="What Web Access Control is, how it works, and why it matters for the decentralized web.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Georgia, 'Times New Roman', serif; line-height: 1.7; color: #2c2c2c; background: #fafaf8; padding: 3rem 2rem; }
+        .container { max-width: 720px; margin: 0 auto; }
+        h1 { font-size: 2.4rem; font-weight: normal; letter-spacing: -0.02em; margin-bottom: 0.2rem; }
+        .subtitle { font-style: italic; color: #666; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .author { font-size: 0.9rem; color: #999; margin-bottom: 1rem; }
+        .links { font-size: 0.9rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #e0e0e0; }
+        .links a { color: #1a5276; text-decoration: none; margin-right: 1.2rem; }
+        .links a:hover { text-decoration: underline; }
+        h2 { font-size: 1.5rem; font-weight: normal; margin-top: 2.5rem; margin-bottom: 1rem; color: #2c2c2c; }
+        h3 { font-size: 1.15rem; font-weight: normal; font-style: italic; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #444; }
+        p { margin-bottom: 1rem; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { font-family: 'Courier New', Courier, monospace; font-size: 0.9em; background: #f0efeb; padding: 0.15em 0.4em; border-radius: 3px; }
+        pre { background: #f0efeb; padding: 1.2rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1.2rem; line-height: 1.5; }
+        pre code { background: none; padding: 0; font-size: 0.85em; }
+        .highlight-box { background: #f0efeb; padding: 1.2rem 1.5rem; border-radius: 6px; margin-bottom: 1.5rem; }
+        .highlight-box ul, .highlight-box ol { padding-left: 1.2rem; }
+        .highlight-box li { margin-bottom: 0.4rem; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        th, td { text-align: left; padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0e0e0; }
+        th { font-weight: normal; font-style: italic; color: #666; }
+        .section { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #e0e0e0; }
+        .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .mode-card { background: #f0efeb; padding: 1rem; border-radius: 6px; }
+        .mode-card strong { font-family: 'Courier New', Courier, monospace; font-weight: normal; font-size: 0.95rem; }
+        .mode-card p { font-size: 0.9rem; margin-bottom: 0; color: #555; }
+        footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0; font-size: 0.85rem; color: #999; }
+        footer a { color: #888; }
+        @media (max-width: 600px) { body { padding: 1.5rem 1rem; } h1 { font-size: 1.8rem; } .mode-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>Introduction to WebACL</h1>
+    <p class="subtitle">Web Access Control for the decentralized web</p>
+    <p class="author">By <a href="https://melvin.me">Melvin Carvalho</a> &middot; April 2026</p>
+    <div class="links">
+        <a href="../">&larr; All Articles</a>
+        <a href="https://webacl.org">WebACL</a>
+        <a href="https://webacl.org/secure-access-conditions/">WAC 2.0</a>
+    </div>
+
+    <div class="section">
+        <h2>What is WebACL?</h2>
+        <p>Web Access Control (WAC) is a decentralized authorization system for the web. It lets you control who can read, write, and manage your data using simple rules written in RDF &mdash; the same language the web uses for linked data.</p>
+        <p>Think of it as <code>chmod</code> for Linked Data. Just as Unix file permissions control access to files on a server, WAC controls access to resources on the web. But unlike Unix permissions, WAC works across domains, uses URIs to identify people, and expresses rules that both humans and machines can understand.</p>
+        <p>WAC was designed by <a href="https://www.w3.org/People/Berners-Lee/">Tim Berners-Lee</a> in 2009 as part of the <a href="https://solidproject.org">Solid</a> project &mdash; a vision for a web where people control their own data. It is the primary authorization mechanism in the <a href="https://solidproject.org/TR/protocol">Solid Protocol</a>.</p>
+    </div>
+
+    <div class="section">
+        <h2>The Core Idea</h2>
+        <p>Every resource on a Solid server can have an associated <strong>ACL file</strong> &mdash; a small RDF document that says who can do what. The ACL file is discovered via an HTTP <code>Link</code> header:</p>
+        <pre><code>Link: &lt;https://alice.pod/docs/file1.acl&gt;; rel="acl"</code></pre>
+        <p>The server checks this ACL file on every request. If there's a matching authorization for the requesting agent, access is granted. If not, access is denied. It's that simple.</p>
+    </div>
+
+    <div class="section">
+        <h2>How It Works</h2>
+        <div class="highlight-box">
+            <ol>
+                <li>A client requests a resource (e.g., <code>GET /docs/file1</code>)</li>
+                <li>The server authenticates the agent (via <a href="https://solidproject.org/TR/oidc">Solid-OIDC</a> or WebID-TLS)</li>
+                <li>The server locates the <strong>effective ACL</strong> &mdash; the resource's own <code>.acl</code> file, or the nearest ancestor container's ACL</li>
+                <li>The server checks if any authorization matches the agent, access mode, and resource</li>
+                <li>If a match is found, access is granted. Otherwise, denied.</li>
+            </ol>
+        </div>
+        <p>The key concept is the <strong>effective ACL</strong>. If a resource doesn't have its own <code>.acl</code> file, the server walks up the container hierarchy until it finds one. This means you can set a single ACL on a folder and have it apply to everything inside &mdash; just like default permissions in a filesystem.</p>
+    </div>
+
+    <div class="section">
+        <h2>Writing an ACL File</h2>
+        <p>An ACL file is an RDF document. Each authorization has four parts: a type, an access subject (who), an access mode (what), and an access target (which resource).</p>
+
+        <h3>Turtle format</h3>
+        <pre><code>@prefix acl: &lt;http://www.w3.org/ns/auth/acl#&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+
+# Owner has full access
+&lt;#owner&gt;
+    a acl:Authorization;
+    acl:agent &lt;https://alice.pod/profile/card#me&gt;;
+    acl:accessTo &lt;./file1&gt;;
+    acl:mode acl:Read, acl:Write, acl:Control.
+
+# Public can read
+&lt;#public&gt;
+    a acl:Authorization;
+    acl:agentClass foaf:Agent;
+    acl:accessTo &lt;./file1&gt;;
+    acl:mode acl:Read.</code></pre>
+
+        <p>This says: Alice has full control over <code>file1</code>, and anyone on the web can read it.</p>
+
+        <h3>JSON-LD format</h3>
+        <p>Since ACL files are RDF, they can also be written in JSON-LD &mdash; making them accessible to web developers who work with JSON:</p>
+        <pre><code>[
+  {
+    "@context": { "acl": "http://www.w3.org/ns/auth/acl#" },
+    "@id": "#owner",
+    "@type": "acl:Authorization",
+    "acl:agent": { "@id": "https://alice.pod/profile/card#me" },
+    "acl:accessTo": { "@id": "./file1" },
+    "acl:mode": [
+      { "@id": "acl:Read" },
+      { "@id": "acl:Write" },
+      { "@id": "acl:Control" }
+    ]
+  }
+]</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Access Modes</h2>
+        <p>WAC defines four access modes:</p>
+        <div class="mode-grid">
+            <div class="mode-card">
+                <strong>acl:Read</strong>
+                <p>View resource contents. Maps to HTTP GET, HEAD.</p>
+            </div>
+            <div class="mode-card">
+                <strong>acl:Write</strong>
+                <p>Create, modify, delete. Maps to PUT, POST, PATCH, DELETE.</p>
+            </div>
+            <div class="mode-card">
+                <strong>acl:Append</strong>
+                <p>Add data without removing existing data. Maps to POST.</p>
+            </div>
+            <div class="mode-card">
+                <strong>acl:Control</strong>
+                <p>Read and modify the ACL itself. The meta-permission.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Access Subjects</h2>
+        <p>WAC identifies agents by their WebID &mdash; a URI that resolves to a profile document. You can grant access to:</p>
+        <table>
+            <tr><th>Predicate</th><th>Grants access to</th></tr>
+            <tr><td><code>acl:agent</code></td><td>A specific person, identified by WebID</td></tr>
+            <tr><td><code>acl:agentGroup</code></td><td>Members of a group (a <code>vcard:Group</code> document)</td></tr>
+            <tr><td><code>acl:agentClass foaf:Agent</code></td><td>Everyone &mdash; public access, no authentication needed</td></tr>
+            <tr><td><code>acl:agentClass acl:AuthenticatedAgent</code></td><td>Any authenticated user with a WebID</td></tr>
+            <tr><td><code>acl:origin</code></td><td>Requests from a specific web application origin</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Inheritance</h2>
+        <p>WAC supports permission inheritance through containers. Using <code>acl:default</code> instead of <code>acl:accessTo</code>, you can set permissions that apply to everything inside a container:</p>
+        <pre><code>&lt;#default&gt;
+    a acl:Authorization;
+    acl:agent &lt;https://alice.pod/profile/card#me&gt;;
+    acl:default &lt;./documents/&gt;;
+    acl:mode acl:Read, acl:Write, acl:Control.</code></pre>
+        <p>This grants Alice full access to everything in <code>/documents/</code> and all its sub-containers &mdash; unless a more specific ACL overrides it.</p>
+    </div>
+
+    <div class="section">
+        <h2>Why WebACL?</h2>
+        <p>WAC has several properties that make it well-suited for the decentralized web:</p>
+        <div class="highlight-box">
+            <ul>
+                <li><strong>Decentralized</strong> &mdash; no central authority. Anyone can run a server with WAC.</li>
+                <li><strong>Cross-domain</strong> &mdash; Alice on one server can grant access to Bob on another.</li>
+                <li><strong>Standards-based</strong> &mdash; built on RDF, HTTP, and WebID. No proprietary formats.</li>
+                <li><strong>Human-readable</strong> &mdash; ACL files are plain text. You can read and edit them directly.</li>
+                <li><strong>Machine-readable</strong> &mdash; ACL files are RDF. Applications can reason about permissions programmatically.</li>
+                <li><strong>Cascading</strong> &mdash; set permissions once on a container, inherit everywhere inside.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>WAC 2.0: Secure Access Conditions</h2>
+        <p><a href="https://webacl.org/secure-access-conditions/">WAC 2.0</a> extends WebACL with <code>acl:condition</code> &mdash; additional requirements on authorizations such as client identity and issuer restrictions. The key innovation is <strong>fail-closed evaluation</strong>: if a server encounters a condition it doesn't support, the authorization is treated as non-applicable. This prevents security constraints from being silently ignored.</p>
+        <p>Read the full specification at <a href="https://webacl.org/secure-access-conditions/">webacl.org/secure-access-conditions/</a>.</p>
+    </div>
+
+    <div class="section">
+        <h2>Getting Started</h2>
+        <p>To start using WebACL:</p>
+        <div class="highlight-box">
+            <ol>
+                <li>Get a <strong>Solid pod</strong> from a provider like <a href="https://solidcommunity.net">solidcommunity.net</a> or <a href="https://solidweb.org">solidweb.org</a></li>
+                <li>Browse to a resource and find its <code>.acl</code> file (check the <code>Link</code> header)</li>
+                <li>Edit the ACL file to add or change permissions</li>
+                <li>Or use a Solid app like <a href="https://solidos.org">SolidOS</a> that manages permissions through a UI</li>
+            </ol>
+        </div>
+        <p>For server implementers, the full specification is at <a href="https://webacl.org">webacl.org</a>.</p>
+    </div>
+
+    <div class="section">
+        <h2>Implementations</h2>
+        <table>
+            <tr><th>Server</th><th>Language</th><th>WAC Support</th></tr>
+            <tr><td><a href="https://github.com/nodeSolidServer/node-solid-server">Node Solid Server (NSS)</a></td><td>JavaScript</td><td>WAC 1.0</td></tr>
+            <tr><td><a href="https://github.com/CommunitySolidServer/CommunitySolidServer">Community Solid Server (CSS)</a></td><td>TypeScript</td><td>WAC 1.0 + ACP</td></tr>
+            <tr><td><a href="https://github.com/JavaScriptSolidServer/JavaScriptSolidServer">JavaScript Solid Server (JSS)</a></td><td>JavaScript</td><td>WAC 2.0</td></tr>
+            <tr><td><a href="https://github.com/solid/pivot">Pivot</a></td><td>TypeScript</td><td>WAC 1.0</td></tr>
+        </table>
+    </div>
+
+    <h2>Further Reading</h2>
+    <p>
+        <a href="https://webacl.org">WebACL Specification (WAC 1.0)</a><br>
+        <a href="https://webacl.org/secure-access-conditions/">WAC 2.0: Secure Access Conditions</a><br>
+        <a href="https://solidproject.org/TR/protocol">Solid Protocol</a><br>
+        <a href="https://solidproject.org/TR/oidc">Solid-OIDC</a>
+    </p>
+
+    <footer>
+        <p><a href="../">&larr; All Articles</a></p>
+        <p>&copy; 2026 <a href="https://melvin.me">Melvin Carvalho</a>. Licensed under <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0</a>. <a href="https://github.com/webacl/articles">Source</a>.</p>
+    </footer>
+
+</div>
+</body>
+</html>
