@@ -116,12 +116,12 @@
   <rect x="505" y="528" width="410" height="105" rx="4" fill="#f0efeb"/>
   <text x="520" y="548" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">alice.pod/</text>
   <text x="540" y="565" font-size="11.5" fill="#5b9bd5" font-family="'Courier New', monospace">.acl</text>
-  <text x="680" y="565" font-size="10" fill="#aaa">&larr; root fallback</text>
+  <text x="680" y="565" font-size="10" fill="#aaa">&#x2190; root fallback</text>
   <text x="540" y="582" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">profile/</text>
   <text x="560" y="599" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">card</text>
   <text x="680" y="599" font-size="10" fill="#aaa">(inherits from root)</text>
   <text x="560" y="616" font-size="11.5" fill="#5b9bd5" font-family="'Courier New', monospace">card.acl</text>
-  <text x="680" y="616" font-size="10" fill="#aaa">&larr; overrides</text>
+  <text x="680" y="616" font-size="10" fill="#aaa">&#x2190; overrides</text>
   <text x="540" y="633" font-size="11.5" fill="#2c2c2c" font-family="'Courier New', monospace">public/</text>
 
   <!-- IMPLEMENTATIONS -->
